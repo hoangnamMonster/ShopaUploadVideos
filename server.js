@@ -3,7 +3,6 @@ const app =  express();
 const multer  = require('multer');
 const includeMulter = multer().any();
 require('./util/readenv').config();
-var path = require("path");
 
 // app.use(multer().any());
 function shouldParseRequest(req) {
@@ -25,12 +24,7 @@ function shouldParseRequest(req) {
 app.use(function(req, res, next) {
   shouldParseRequest(req) ? includeMulter(req, res, next) : next();
 });
-app.get('/js/video_upload.js', function (req, res) {
-  res.sendFile(__dirname + '/public/js/video_upload.js');
-});
-app.get('/css/style.css', function (req, res) {
-  res.sendFile(__dirname + '/public/css/style.css');
-});
+
 app.use(express.static('public'));
 
 const routes = require('./routes/');
