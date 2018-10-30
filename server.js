@@ -22,6 +22,8 @@ function shouldParseRequest(req) {
 }
 
 app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   shouldParseRequest(req) ? includeMulter(req, res, next) : next();
 });
 
