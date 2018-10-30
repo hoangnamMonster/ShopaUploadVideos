@@ -3,8 +3,8 @@ const fs = require('fs');
 
 function fileFilter (req, file, callback) {
   var errorMessage = '';
-  if (!file || file.mimetype !== 'video/mp4') {
-    errorMessage = 'Wrong file type \"' + file.originalname.split('.').pop() + '\" found. Only mp4 video files are allowed!';
+  if (!file || (file.mimetype !== 'video/mp4' && file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/png')) {
+    errorMessage = 'Wrong file type \"' + file.originalname.split('.').pop() + '\" found. Only mp4/jpg/png video files are allowed!';
   }
   if(errorMessage) {
     return callback({errorMessage: errorMessage, code: 'LIMIT_FILE_TYPE'}, false);
